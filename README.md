@@ -1,4 +1,4 @@
-[![Python Package CI](https://github.com/cerberius-soft/cerberius-python-client/actions/workflows/python-test.yml/badge.svg)](https://github.com/cerberius-soft/cerberius-python-client/actions/workflows/python-test.yml)
+[![Python Package CI](https://github.com/cerberius-lab/cerberius-python-client/actions/workflows/python-test.yml/badge.svg)](https://github.com/cerberius-lab/cerberius-python-client/actions/workflows/python-test.yml)
 # Cerberius API Python Client
 
 This library provides a Python interface for interacting with the Cerberius API, allowing you to perform IP address lookups, email address validations, and prompt security checks.
