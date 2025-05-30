@@ -1,0 +1,43 @@
+name: Python Package CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10", "3.11"] # Test on multiple Python versions
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: "1.4.2" # Specify a version of Poetry, can be updated
+        virtualenvs-create: true
+        virtualenvs-in-project: true # Creates .venv in project root, good for caching
+
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Install dependencies
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root # Install deps, but not the project itself as editable
+
+    - name: Install project (for pytest to find it)
+      run: poetry install --no-interaction # This will also install the project
+
+    - name: Run tests
+      run: poetry run pytest tests/

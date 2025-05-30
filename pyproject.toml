@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "cerberius-python-client"
+version = "0.1.0"
+description = "A Python client for the Cerberius API."
+authors = ["Stas Solodkin <stas@cerberius.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/cerberius-soft/cerberius-python-client"
+repository = "https://github.com/cerberius-soft/cerberius-python-client"
+keywords = ["cerberius", "api", "client", "security", "ip lookup", "email validation", "prompt classification"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+requests = "^2.25.1" # Using a common version of requests, as per example
+
+[tool.poetry.dev-dependencies] # Older poetry versions use this instead of group.dev.dependencies
+pytest = "^7.1.2" # Using a common version of pytest, as per example
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
